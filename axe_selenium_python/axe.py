@@ -1,9 +1,15 @@
+"""Axe Selenium Python"""
+from __future__ import annotations
+
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
 import json
 import os
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from selenium.webdriver.remote.webdriver import WebDriver
 
 _DEFAULT_SCRIPT = os.path.join(
     os.path.dirname(__file__), "node_modules", "axe-core", "axe.min.js"
@@ -11,95 +17,89 @@ _DEFAULT_SCRIPT = os.path.join(
 
 
 class Axe:
-    def __init__(self, selenium, script_url=_DEFAULT_SCRIPT):
+    """Axe"""
+
+    def __init__(self, selenium: WebDriver, script_url: str = _DEFAULT_SCRIPT):
+        """
+        script_url: location of the axe-core script.
+        """
         self.script_url = script_url
         self.selenium = selenium
 
     def inject(self):
         """
         Recursively inject aXe into all iframes and the top level document.
-
-        :param script_url: location of the axe-core script.
-        :type script_url: string
         """
         with open(self.script_url, encoding="utf8") as f:
             self.selenium.execute_script(f.read())
 
-    def run(self, context=None, options=None):
+    def run(self, context: str | None = None, options: dict | None = None) -> dict:
         """
         Run axe against the current page.
 
         :param context: which page part(s) to analyze and/or what to exclude.
         :param options: dictionary of aXe options.
         """
-        template = (
-            "var callback = arguments[arguments.length - 1];"
-            + "axe.run(%s).then(results => callback(results))"
-        )
         args = ""
 
         # If context parameter is passed, add to args
         if context is not None:
-            args += "%r" % context
+            args += f"{context!r}"
         # Add comma delimiter only if both parameters are passed
         if context is not None and options is not None:
             args += ","
         # If options parameter is passed, add to args
         if options is not None:
-            args += "%s" % options
+            args += f"{options}"
 
-        command = template % args
+        command = (
+            f"var callback = arguments[arguments.length - 1];"
+            f"axe.run({args}).then(results => callback(results))"
+        )
         response = self.selenium.execute_async_script(command)
         return response
 
-    def report(self, violations):
+    def report(self, violations: dict) -> str:
         """
         Return readable report of accessibility violations found.
 
         :param violations: Dictionary of violations.
-        :type violations: dict
         :return report: Readable report of violations.
-        :rtype: string
         """
         string = ""
-        string += "Found " + str(len(violations)) + " accessibility violations:"
+        string += f"Found {len(violations)} accessibility violations:"
         for violation in violations:
             string += (
-                "\n\n\nRule Violated:\n"
-                + violation["id"]
-                + " - "
-                + violation["description"]
-                + "\n\tURL: "
-                + violation["helpUrl"]
-                + "\n\tImpact Level: "
-                + violation["impact"]
-                + "\n\tTags:"
+                f"\n\n\nRule Violated:"
+                f'\n{violation["id"]} - {violation["description"]}'
+                f'\n\tURL: {violation["helpUrl"]}'
+                f'\n\tImpact Level: {violation["impact"]}'
+                f"\n\tTags:"
             )
             for tag in violation["tags"]:
-                string += " " + tag
+                string += f" {tag}"
             string += "\n\tElements Affected:"
             i = 1
             for node in violation["nodes"]:
                 for target in node["target"]:
-                    string += "\n\t" + str(i) + ") Target: " + target
+                    string += f"\n\t{i}) Target: {target}"
                     i += 1
                 for item in node["all"]:
-                    string += "\n\t\t" + item["message"]
+                    string += f"\n\t\t{item['message']}"
                 for item in node["any"]:
-                    string += "\n\t\t" + item["message"]
+                    string += f"\n\t\t{item['message']}"
                 for item in node["none"]:
-                    string += "\n\t\t" + item["message"]
+                    string += f"\n\t\t{item['message']}"
             string += "\n\n\n"
         return string
 
-    def write_results(self, data, name=None):
+    def write_results(self, data: dict, name: str | None = None) -> None:
         """
         Write JSON to file with the specified name.
 
         :param name: Path to the file to be written to. If no path is passed
                      a new JSON file "results.json" will be created in the
                      current working directory.
-        :param output: JSON object.
         """
 
         if name:

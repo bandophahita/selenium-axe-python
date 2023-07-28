@@ -1,9 +1,11 @@
+from __future__ import annotations
+
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this file,
 # You can obtain one at http://mozilla.org/MPL/2.0/.
-
 import json
 import os
+from typing import TYPE_CHECKING, Any
 
 import pytest
 from selenium import webdriver
@@ -12,11 +14,18 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 
 from ..axe import Axe
 
+if TYPE_CHECKING:
+    from collections.abc import Generator
+
+    from py._path.local import LocalPath
+    from pytest_mock import MockerFixture
+    from selenium.webdriver.remote.webdriver import WebDriver
+
 _DEFAULT_TEST_FILE = os.path.join(os.path.dirname(__file__), "test_page.html")
 
 
 @pytest.fixture
-def firefox_driver():
+def firefox_driver() -> Generator[WebDriver, Any, None]:
     enable_log_driver = False
     log_dir: str = "./logs"
     driver_path: str | None = None
@@ -48,7 +57,7 @@ def firefox_driver():
 
 
 @pytest.fixture
-def chrome_driver():
+def chrome_driver() -> Generator[WebDriver, Any, None]:
     enable_log_driver = False
     log_dir: str = "./logs"
 
@@ -105,7 +114,7 @@ def chrome_driver():
     driver.close()
 
 
-def confirm_data(data):
+def confirm_data(data: dict) -> None:
     assert len(data["inapplicable"]) == 71
     assert len(data["incomplete"]) == 0
     assert len(data["passes"]) == 7
@@ -113,7 +122,7 @@ def confirm_data(data):
 
 
 @pytest.mark.nondestructive
-def test_run_axe_sample_page_firefox(firefox_driver):
+def test_run_axe_sample_page_firefox(firefox_driver: WebDriver) -> None:
     """Run axe against sample page and verify JSON output is as expected."""
     data = _perform_axe_run(firefox_driver)
 
@@ -121,14 +130,14 @@ def test_run_axe_sample_page_firefox(firefox_driver):
 
 
 @pytest.mark.nondestructive
-def test_run_axe_sample_page_chrome(chrome_driver):
+def test_run_axe_sample_page_chrome(chrome_driver: WebDriver) -> None:
     """Run axe against sample page and verify JSON output is as expected."""
     data = _perform_axe_run(chrome_driver)
 
     confirm_data(data)
 
 
-def _perform_axe_run(driver):
+def _perform_axe_run(driver: WebDriver) -> dict:
     driver.get("file://" + _DEFAULT_TEST_FILE)
     axe = Axe(driver)
     axe.inject()
@@ -136,7 +145,7 @@ def _perform_axe_run(driver):
     return data
 
 
-def test_write_results_to_file(tmpdir, mocker):
+def test_write_results_to_file(tmpdir: LocalPath, mocker: MockerFixture) -> None:
     axe = Axe(mocker.MagicMock())
     data = {"testKey": "testValue"}
     filename = os.path.join(str(tmpdir), "results.json")
@@ -149,7 +158,7 @@ def test_write_results_to_file(tmpdir, mocker):
     assert data == actual_file_contents
 
 
-def test_write_results_without_filepath(mocker):
+def test_write_results_without_filepath(mocker: MockerFixture) -> None:
     axe = Axe(mocker.MagicMock())
     data = {"testKey": "testValue"}
     cwd = os.getcwd()
