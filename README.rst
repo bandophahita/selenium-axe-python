@@ -3,7 +3,7 @@ axe-selenium-python
 
 axe-selenium-python integrates aXe and selenium to enable automated web accessibility testing.
 
-**This version of axe-selenium-python is using axe-core@4.0.2.**
+**This version of axe-selenium-python is using axe-core@4.7.2.**
 
 .. image:: https://img.shields.io/badge/license-MPL%202.0-blue.svg
    :target: https://github.com/mozilla-services/axe-selenium-python/blob/master/LICENSE.txt
@@ -31,8 +31,8 @@ Requirements
 
 You will need the following prerequisites in order to use axe-selenium-python:
 
-- selenium >= 3.0.0
-- Python 2.7 or 3.6
+- selenium >= 3.0.2
+- Python 3.11
 - The appropriate driver for the browser you intend to use, downloaded and added to your path, e.g. geckodriver for Firefox:
 
   - `geckodriver <https://github.com/mozilla/geckodriver/releases>`_ downloaded and `added to your PATH <https://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path#answer-40208762>`_
