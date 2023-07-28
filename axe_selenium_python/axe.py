@@ -1,19 +1,21 @@
-"""Axe Selenium Python"""
-from __future__ import annotations
-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+"""Axe Selenium Python"""
+from __future__ import annotations
+
 import json
 import os
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, TypeAlias
 
 if TYPE_CHECKING:
-    from selenium.webdriver.remote.webdriver import WebDriver
+    from selenium.webdriver.remote.webdriver import WebDriver  # pragma: no cover
 
 _DEFAULT_SCRIPT = os.path.join(
     os.path.dirname(__file__), "node_modules", "axe-core", "axe.min.js"
 )
+
+T_data: TypeAlias = dict[str, list[dict]]
 
 
 class Axe:
@@ -33,7 +35,7 @@ class Axe:
         with open(self.script_url, encoding="utf8") as f:
             self.selenium.execute_script(f.read())
 
-    def run(self, context: str | None = None, options: dict | None = None) -> dict:
+    def run(self, context: object | None = None, options: dict | None = None) -> T_data:
         """
         Run axe against the current page.
 
@@ -44,10 +46,10 @@ class Axe:
 
         # If context parameter is passed, add to args
         if context is not None:
-            args += f"{context!r}"
-        # Add comma delimiter only if both parameters are passed
-        if context is not None and options is not None:
-            args += ","
+            args += f"{context}"
+            if options is not None:
+                args += ","
+
         # If options parameter is passed, add to args
         if options is not None:
             args += f"{options}"
@@ -59,7 +61,8 @@ class Axe:
         response = self.selenium.execute_async_script(command)
         return response
 
-    def report(self, violations: dict) -> str:
+    @staticmethod
+    def report(violations: list[dict]) -> str:
         """
         Return readable report of accessibility violations found.
 
@@ -93,7 +96,8 @@ class Axe:
             string += "\n\n\n"
         return string
 
-    def write_results(self, data: dict, name: str | None = None) -> None:
+    @staticmethod
+    def write_results(data: dict, name: str | None = None) -> None:
         """
         Write JSON to file with the specified name.
 
@@ -108,7 +112,4 @@ class Axe:
             filepath = os.path.join(os.getcwd(), "results.json")
 
         with open(filepath, "w", encoding="utf8") as f:
-            try:
-                f.write(json.dumps(data, indent=4))
-            except NameError:
-                f.write(json.dumps(data, indent=4))
+            f.write(json.dumps(data, indent=4))

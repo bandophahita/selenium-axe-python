@@ -137,6 +137,52 @@ def test_run_axe_sample_page_chrome(chrome_driver: WebDriver) -> None:
     confirm_data(data)
 
 
+def test_run(chrome_driver: WebDriver) -> None:
+    driver = chrome_driver
+    driver.get("file://" + _DEFAULT_TEST_FILE)
+    axe = Axe(driver)
+    axe.inject()
+    data1 = axe.run(
+        options={
+            "runOnly": {
+                "type": "rule",
+                "values": [
+                    "html-has-lang",
+                ],
+            }
+        }
+    )
+    data2 = axe.run(context="['select']")
+    data3 = axe.run(
+        context=["html"],
+        options={
+            "runOnly": {
+                "type": "rule",
+                "values": [
+                    "html-has-lang",
+                    "document-title",
+                ],
+            }
+        },
+    )
+
+    assert len(data1["inapplicable"]) == 0
+    assert len(data1["incomplete"]) == 0
+    assert len(data1["passes"]) == 0
+    assert len(data1["violations"]) == 1
+
+    assert len(data2["inapplicable"]) == 79
+    assert len(data2["incomplete"]) == 0
+    assert len(data2["passes"]) == 5
+    assert len(data2["violations"]) == 1
+
+    assert len(data3["inapplicable"]) == 0
+    assert len(data3["incomplete"]) == 0
+    assert len(data3["passes"]) == 0
+    assert len(data3["violations"]) == 2
+    return
+
+
 def _perform_axe_run(driver: WebDriver) -> dict:
     driver.get("file://" + _DEFAULT_TEST_FILE)
     axe = Axe(driver)
@@ -148,7 +194,7 @@ def _perform_axe_run(driver: WebDriver) -> dict:
 def test_write_results_to_file(tmpdir: LocalPath, mocker: MockerFixture) -> None:
     axe = Axe(mocker.MagicMock())
     data = {"testKey": "testValue"}
-    filename = os.path.join(str(tmpdir), "results.json")
+    filename = os.path.join(str(tmpdir), "manual_results.json")
 
     axe.write_results(data, filename)
 
@@ -164,9 +210,214 @@ def test_write_results_without_filepath(mocker: MockerFixture) -> None:
     cwd = os.getcwd()
     filename = os.path.join(cwd, "results.json")
 
-    axe.write_results(data, filename)
+    axe.write_results(data)
     with open(filename) as f:
         actual_file_contents = json.loads(f.read())
 
     assert data == actual_file_contents
     assert os.path.dirname(filename) == cwd
+
+
+@pytest.mark.nondestructive
+def test_report() -> None:
+    """Run axe against sample page and verify text output is as expected."""
+
+    violation = [
+        {
+            "description": (
+                "Ensures each HTML document contains a non-empty <title> element"
+            ),
+            "help": "Documents must have <title> element to aid in navigation",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/document-title?application=axeAPI",
+            "id": "document-title",
+            "impact": "serious",
+            "nodes": [
+                {
+                    "all": [],
+                    "any": [
+                        {
+                            "data": None,
+                            "id": "doc-has-title",
+                            "impact": "serious",
+                            "message": "Document does not have a non-empty <title> element",
+                            "relatedNodes": [],
+                        }
+                    ],
+                    "failureSummary": (
+                        "Fix any of the following:\n  "
+                        "Document does not have a non-empty <title> element"
+                    ),
+                    "html": "<html>",
+                    "impact": "serious",
+                    "none": [],
+                    "target": ["html"],
+                }
+            ],
+            "tags": [
+                "cat.text-alternatives",
+                "wcag2a",
+                "wcag242",
+                "ACT",
+                "TTv5",
+                "TT12.a",
+            ],
+        },
+        {
+            "description": "Ensures every HTML document has a lang attribute",
+            "help": "<html> element must have a lang attribute",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/html-has-lang"
+            "?application=axeAPI",
+            "id": "html-has-lang",
+            "impact": "serious",
+            "nodes": [
+                {
+                    "all": [],
+                    "any": [
+                        {
+                            "data": {"messageKey": "noLang"},
+                            "id": "has-lang",
+                            "impact": "serious",
+                            "message": "The <html> element does not have a lang attribute",
+                            "relatedNodes": [],
+                        }
+                    ],
+                    "failureSummary": "Fix any of the following:\n  The <html> element does not have a lang attribute",
+                    "html": "<html>",
+                    "impact": "serious",
+                    "none": [],
+                    "target": ["html"],
+                }
+            ],
+            "tags": ["cat.language", "wcag2a", "wcag311", "ACT", "TTv5", "TT11.a"],
+        },
+        {
+            "description": "Ensures the document has a main landmark",
+            "help": "Document should have one main landmark",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/landmark-one-main"
+            "?application=axeAPI",
+            "id": "landmark-one-main",
+            "impact": "moderate",
+            "nodes": [
+                {
+                    "all": [
+                        {
+                            "data": None,
+                            "id": "page-has-main",
+                            "impact": "moderate",
+                            "message": "Document does not have a main landmark",
+                            "relatedNodes": [],
+                        }
+                    ],
+                    "any": [],
+                    "failureSummary": "Fix all of the following:\n  Document does not have a main landmark",
+                    "html": "<html>",
+                    "impact": "moderate",
+                    "none": [],
+                    "target": ["html"],
+                }
+            ],
+            "tags": ["cat.semantics", "best-practice"],
+        },
+        {
+            "description": "Ensures that lists are structured correctly",
+            "help": "<ul> and <ol> must only directly contain <li>, <script> or "
+            "<template> elements",
+            "helpUrl": "https://dequeuniversity.com/rules/axe/4.7/list?application"
+            "=axeAPI",
+            "id": "list",
+            "impact": "serious",
+            "nodes": [
+                {
+                    "all": [],
+                    "any": [],
+                    "failureSummary": "Fix "
+                    "all "
+                    "of "
+                    "the "
+                    "following:\n  List element has direct children that are not allowed: div",
+                    "html": "<ul>\n      "
+                    "<div>\n        "
+                    "<li>This is a "
+                    "line "
+                    "element</li>\n  "
+                    "    </div>\n    "
+                    "</ul>",
+                    "impact": "serious",
+                    "none": [
+                        {
+                            "data": {"values": "div"},
+                            "id": "only-listitems",
+                            "impact": "serious",
+                            "message": "List element has direct children that are not allowed: div",
+                            "relatedNodes": [
+                                {
+                                    "html": "<div>\n        <li>This is a line element</li>\n      </div>",
+                                    "target": ["div"],
+                                }
+                            ],
+                        }
+                    ],
+                    "target": ["ul"],
+                }
+            ],
+            "tags": ["cat.structure", "wcag2a", "wcag131"],
+        },
+    ]
+    output = Axe.report(violation)
+
+    expected = """Found 4 accessibility violations:
+
+
+Rule Violated:
+document-title - Ensures each HTML document contains a non-empty <title> element
+	URL: https://dequeuniversity.com/rules/axe/4.7/document-title?application=axeAPI
+	Impact Level: serious
+	Tags: cat.text-alternatives wcag2a wcag242 ACT TTv5 TT12.a
+	Elements Affected:
+	1) Target: html
+		Document does not have a non-empty <title> element
+
+
+
+
+
+Rule Violated:
+html-has-lang - Ensures every HTML document has a lang attribute
+	URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang?application=axeAPI
+	Impact Level: serious
+	Tags: cat.language wcag2a wcag311 ACT TTv5 TT11.a
+	Elements Affected:
+	1) Target: html
+		The <html> element does not have a lang attribute
+
+
+
+
+
+Rule Violated:
+landmark-one-main - Ensures the document has a main landmark
+	URL: https://dequeuniversity.com/rules/axe/4.7/landmark-one-main?application=axeAPI
+	Impact Level: moderate
+	Tags: cat.semantics best-practice
+	Elements Affected:
+	1) Target: html
+		Document does not have a main landmark
+
+
+
+
+
+Rule Violated:
+list - Ensures that lists are structured correctly
+	URL: https://dequeuniversity.com/rules/axe/4.7/list?application=axeAPI
+	Impact Level: serious
+	Tags: cat.structure wcag2a wcag131
+	Elements Affected:
+	1) Target: ul
+		List element has direct children that are not allowed: div
+
+
+"""
+
+    assert output == expected
+    return

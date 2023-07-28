@@ -161,6 +161,7 @@ target-version = "py311"
 
 [tool.ruff.per-file-ignores]
 "__init__.py" = ["F401"]
+"test_axe.py" = ["E501"]
 
 [tool.ruff.isort]
 combine-as-imports = true
