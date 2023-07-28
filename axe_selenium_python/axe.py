@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from selenium.webdriver.remote.webdriver import WebDriver  # pragma: no cover
 
 _DEFAULT_SCRIPT = os.path.join(
-    os.path.dirname(__file__), "node_modules", "axe-core", "axe.min.js"
+    os.path.dirname(__file__), "axe-core", "axe.min.js"
 )
 
 T_data: TypeAlias = dict[str, list[dict]]
