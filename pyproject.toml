@@ -8,13 +8,13 @@
 #   pip install -e .[dev]
 
 [tool.poetry]
-name = "axe-selenium-python"
-version = "2.1.6"
+name = "selenium-axe-python"
+version = "2.1.7"
 description = "Python library to integrate axe and selenium for web accessibility testing."
 authors = ["Kimberly Sereduck"]
 maintainers = ["Marcel Wilson"]
 license = "Mozilla Public License 2.0 (MPL 2.0)"
-repository = "http://github.com/mozilla-services/axe-selenium-python"
+repository = "https://github.com/bandophahita/selenium-axe-python"
 #documentation = ""
 readme = "README.rst"
 classifiers = [
@@ -40,7 +40,7 @@ classifiers = [
 python = "^3.11"
 selenium = ">=3.0.2"
 
-# convenience packages for development of axe-selenium-python only
+# convenience packages for development of selenium-axe-python only
 pre-commit = {version = "*", optional = true}
 pytest = {version = "*", optional = true}
 tox = {version = "*", optional = true}

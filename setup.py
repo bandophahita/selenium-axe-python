@@ -10,7 +10,7 @@ with open("./README.rst", encoding="utf8") as f:
     readme = f.read()
 
 setup(
-    name="axe-selenium-python",
+    name="selenium-axe-python",
     use_scm_version=True,
     setup_requires=["setuptools_scm"],
     description="Python library to integrate axe and selenium for web \
