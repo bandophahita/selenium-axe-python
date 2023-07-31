@@ -90,6 +90,12 @@ Resources
 CHANGELOG
 ---------
 
+## version 2.1.7
+
+- forked from original repo [axe-selenium-python](http://github.com/mozilla-services/axe-selenium-python/)
+- updated to work with python >=3.7
+
+
 ### version 2.1.5
 
 **Breaks backwards compatibility**:

@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kimberlythegeek/axe-selenium-python.git"
+    "url": "git+https://github.com/bandophahita/selenium-axe-python.git"
   },
-  "author": "Kimberly Sereduck",
+  "author": "Marcel Wilson",
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/kimberlythegeek/axe-selenium-python/issues"
+    "url": "https://github.com/bandophahita/selenium-axe-python/issues"
   },
-  "homepage": "https://github.com/kimberlythegeek/axe-selenium-python#readme"
+  "homepage": "https://github.com/bandophahita/selenium-axe-python#readme"
 }
