@@ -21,9 +21,9 @@ setup(
     author_email="ksereduck@mozilla.com",
     packages=find_packages(),
     package_data={
-        "axe_selenium_python": [
-            "axe_selenium_python/node_modules/axe-core/axe.min.js",
-            "axe_selenium_python/tests/test_page.html",
+        "selenium_axe_python": [
+            "selenium_axe_python/node_modules/axe-core/axe.min.js",
+            "selenium_axe_python/tests/test_page.html",
         ]
     },
     include_package_data=True,
