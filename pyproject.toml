@@ -37,7 +37,7 @@ classifiers = [
 # so we dont have two different sets of package versions to update.
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.7"
 selenium = ">=3.0.2"
 
 # convenience packages for development of selenium-axe-python only

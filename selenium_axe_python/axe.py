@@ -6,10 +6,11 @@ from __future__ import annotations
 
 import json
 import os
-from typing import TYPE_CHECKING, TypeAlias
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from selenium.webdriver.remote.webdriver import WebDriver  # pragma: no cover
+    from typing import TypeAlias
 
 _DEFAULT_SCRIPT = os.path.join(
     os.path.dirname(__file__), "axe-core", "axe.min.js"
