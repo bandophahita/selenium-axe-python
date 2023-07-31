@@ -6,17 +6,16 @@ from __future__ import annotations
 
 import json
 import os
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Dict, TypeAlias
 
 if TYPE_CHECKING:
     from selenium.webdriver.remote.webdriver import WebDriver  # pragma: no cover
-    from typing import TypeAlias
 
 _DEFAULT_SCRIPT = os.path.join(
     os.path.dirname(__file__), "axe-core", "axe.min.js"
 )
 
-T_data: TypeAlias = dict[str, list[dict]]
+T_data: TypeAlias = Dict[str, list[Dict]]
 
 
 class Axe:
