@@ -3,6 +3,10 @@ selenium-axe-python
 
 selenium-axe-python integrates aXe and selenium to enable automated web accessibility testing.
 
+Originally created as [axe-selenium-python](http://github.com/mozilla-services/axe-selenium-python/) by [Kimberly Sereduck](https://github.com/kimberlythegeek)
+Unfortunately she is no longer assigned to the project which means the original project has gone stale.
+This is basically a fork of that project with some updates.
+
 **This version of selenium-axe-python is using axe-core@4.7.2.**
 
 [![License](https://img.shields.io/badge/license-MPL%202.0-blue.svg)](https://github.com/mozilla-services/axe-selenium-python/blob/master/LICENSE.txt)
