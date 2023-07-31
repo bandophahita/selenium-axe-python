@@ -39,7 +39,7 @@ jobs:
           flake8 --exit-zero selenium_axe_python
       - name: Lint with mypy
         run: |
-          mypy screenpy
+          mypy selenium_axe_python
       - name: Lint with pylint
         run: |
-          pylint screenpy
+          pylint selenium_axe_python
