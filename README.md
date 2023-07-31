@@ -5,25 +5,12 @@ selenium-axe-python integrates aXe and selenium to enable automated web accessib
 
 **This version of selenium-axe-python is using axe-core@4.7.2.**
 
-.. image:: https://img.shields.io/badge/license-MPL%202.0-blue.svg
-   :target: https://github.com/mozilla-services/axe-selenium-python/blob/master/LICENSE.txt
-   :alt: License
-.. image:: https://img.shields.io/pypi/v/axe-selenium-python.svg
-   :target: https://pypi.org/project/axe-selenium-python/
-   :alt: PyPI
-.. image:: https://img.shields.io/travis/mozilla-services/axe-selenium-python.svg
-   :target: https://travis-ci.org/mozilla-services/axe-selenium-python
-   :alt: Travis
-.. image:: https://img.shields.io/github/issues-raw/mozilla-services/axe-selenium-python.svg
-   :target: https://github.com/mozilla-services/axe-selenium-python/issues
-   :alt: Issues
-.. image:: https://api.dependabot.com/badges/status?host=github&repo=mozilla-services/axe-selenium-python
-   :target: https://dependabot.com
-   :alt: Dependabot
-.. image:: https://coveralls.io/repos/github/mozilla-services/axe-selenium-python/badge.svg?branch=master
-   :target: https://coveralls.io/github/mozilla-services/axe-selenium-python?branch=master
-   :alt: Coveralls
-
+[![License](https://img.shields.io/badge/license-MPL%202.0-blue.svg)](https://github.com/mozilla-services/axe-selenium-python/blob/master/LICENSE.txt)
+[![PyPI](https://img.shields.io/pypi/v/axe-selenium-python.svg)](https://pypi.org/project/axe-selenium-python/)
+[![Travis](https://img.shields.io/travis/mozilla-services/axe-selenium-python.svg)](https://travis-ci.org/mozilla-services/axe-selenium-python)
+[![Issues](https://img.shields.io/github/issues-raw/mozilla-services/axe-selenium-python.svg)](https://github.com/mozilla-services/axe-selenium-python/issues)
+[![Dependabot](https://api.dependabot.com/badges/status?host=github&repo=mozilla-services/axe-selenium-python)](https://dependabot.com)
+[![Coveralls](https://coveralls.io/repos/github/mozilla-services/axe-selenium-python/badge.svg?branch=master)](https://coveralls.io/github/mozilla-services/axe-selenium-python?branch=master)
 
 
 Requirements
@@ -35,44 +22,44 @@ You will need the following prerequisites in order to use selenium-axe-python:
 - Python 3.11
 - The appropriate driver for the browser you intend to use, downloaded and added to your path, e.g. geckodriver for Firefox:
 
-  - `geckodriver <https://github.com/mozilla/geckodriver/releases>`_ downloaded and `added to your PATH <https://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path#answer-40208762>`_
+  - [geckodriver](https://github.com/mozilla/geckodriver/releases) downloaded and [added to your PATH](https://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path#answer-40208762)
 
 Installation
 ------------
 
 To install selenium-axe-python:
 
-.. code-block:: bash
-
-    $ pip install git+https://github.com/bandophahita/selenium-axe-python
-                  git+ssh://git@github.com/bandophahita/selenium-axe-python.git@master
-
+```bash
+$ pip install git+https://github.com/bandophahita/selenium-axe-python
+              git+ssh://git@github.com/bandophahita/selenium-axe-python.git@master
+```
 
 Usage
 ------
 
-.. code-block:: python
+```python
 
-  from selenium import webdriver
-  from axe_selenium_python import Axe
+from selenium import webdriver
+from axe_selenium_python import Axe
 
-  def test_google():
-      driver = webdriver.Firefox()
-      driver.get("http://www.google.com")
-      axe = Axe(driver)
-      # Inject axe-core javascript into page.
-      axe.inject()
-      # Run axe accessibility checks.
-      results = axe.run()
-      # Write results to file
-      axe.write_results(results, 'a11y.json')
-      driver.close()
-      # Assert no violations are found
-      assert len(results["violations"]) == 0, axe.report(results["violations"])
+def test_google():
+  driver = webdriver.Firefox()
+  driver.get("http://www.google.com")
+  axe = Axe(driver)
+  # Inject axe-core javascript into page.
+  axe.inject()
+  # Run axe accessibility checks.
+  results = axe.run()
+  # Write results to file
+  axe.write_results(results, 'a11y.json')
+  driver.close()
+  # Assert no violations are found
+  assert len(results["violations"]) == 0, axe.report(results["violations"])
+```
 
-The method ``axe.run()`` accepts two parameters: ``context`` and ``options``.
+The method `axe.run()` accepts two parameters: `context` and `options`.
 
-For more information on ``context`` and ``options``, view the `aXe documentation here <https://github.com/dequelabs/axe-core/blob/master/doc/API.md#parameters-axerun>`_.
+For more information on `context` and `options`, view the [aXe documentation here](https://github.com/dequelabs/axe-core/blob/master/doc/API.md#parameters-axerun).
 
 Contributing
 ------------
@@ -82,19 +69,18 @@ contributions are very welcome.
 
 ~~Node dependencies must be installed by running `npm install` inside the selenium-axe-python directory~~
 
-You can run the tests using
-`tox <https://tox.readthedocs.io/en/latest/>`_:
+You can run the tests using [tox](https://tox.readthedocs.io/en/latest/):
 
-.. code-block:: bash
-
-  $ tox
+```bash
+$ tox
+```
 
 Resources
 ---------
 
-- `Issue Tracker <http://github.com/mozilla-services/axe-selenium-python/issues>`_
-- `Code <http://github.com/mozilla-services/axe-selenium-python/>`_
-- `pytest-axe <http://github.com/mozilla-services/pytest-axe/>`_
+- [Issue Tracker](http://github.com/mozilla-services/axe-selenium-python/issues>)
+- [Code](http://github.com/mozilla-services/axe-selenium-python/)
+- [pytest-axe](http://github.com/mozilla-services/pytest-axe/)
 
 CHANGELOG
 ^^^^^^^^^^^^^^
@@ -103,7 +89,7 @@ version 2.1.5
 *************
 **Breaks backwards compatibility**:
 
-- The Axe class method ``execute`` has been renamed to ``run`` to mirror the method in the axe-core API.
+- The Axe class method `execute` has been renamed to `run` to mirror the method in the axe-core API.
 
 version 2.1.0
 **************
@@ -113,29 +99,29 @@ version 2.1.0
 
 version 2.0.0
 **************
-- All functionalities that are not part of axe-core have been moved into a separate package, ``pytest-axe``. This includes:
+- All functionalities that are not part of axe-core have been moved into a separate package, `pytest-axe`. This includes:
 
-  - ``run_axe`` helper method
-  - ``get_rules`` Axe class method
-  - ``run`` Axe class method
-  - ``impact_included`` Axe class method
-  - ``analyze`` Axe class method.
+  - `run_axe` helper method
+  - `get_rules` Axe class method
+  - `run` Axe class method
+  - `impact_included` Axe class method
+  - `analyze` Axe class method.
 
 The purpose of this change is to separate implementations that are specific to the Mozilla Firefox Test Engineering team,
-and leave the base ``selenium-axe-python`` package for a more broad use case. This package was modeled off of Deque's
+and leave the base `selenium-axe-python` package for a more broad use case. This package was modeled off of Deque's
 Java package, axe-selenium-java, and will now more closely mirror it.
 
-All functionalities can still be utilized when using ``selenium-axe-python`` in conjunction with ``pytest-axe``.
+All functionalities can still be utilized when using `selenium-axe-python` in conjunction with `pytest-axe`.
 
 version 1.2.3
 **************
 - Added the analyze method to the Axe class. This method runs accessibility checks, and writes the JSON results to file based on the page URL and the timestamp.
-- Writing results to file can be enabled by setting the environment variable ``ACCESSIBILITY_REPORTING=true``. The files will be written to ``results/`` directory, which must be created if it does not already exist.
-- Accessibility checks can be disabled by setting the environment variable ``ACCESSIBILITY_DISABLED=true``.
+- Writing results to file can be enabled by setting the environment variable `ACCESSIBILITY_REPORTING=true`. The files will be written to `results/` directory, which must be created if it does not already exist.
+- Accessibility checks can be disabled by setting the environment variable `ACCESSIBILITY_DISABLED=true`.
 
 version 1.2.1
 **************
-- Updated axe to ``axe-core@2.6.1``
+- Updated axe to `axe-core@2.6.1`
 - Modified impact_included class method to reflect changes to the aXe API:
 - There are now only 3 impact levels: 'critical', 'serious', and 'minor'
 
