@@ -90,7 +90,7 @@ multi_line_output = 3
 include_trailing_comma = "True"
 use_parentheses = "True"
 combine_as_imports = "True"
-src_paths = "axe-selenium-python"
+src_paths = "selenium-axe-python"
 
 
 [tool.ruff]
