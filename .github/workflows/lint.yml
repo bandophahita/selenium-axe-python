@@ -31,15 +31,12 @@ jobs:
       - name: Lint with black
         run: |
           black --check --diff selenium_axe_python
-      - name: Lint with isort
+      - name: Lint with ruff
         run: |
-          isort --check-only --diff selenium_axe_python
-      - name: Lint with flake8
-        run: |
-          flake8 --exit-zero selenium_axe_python
+          ruff selenium_axe_python
       - name: Lint with mypy
         run: |
           mypy selenium_axe_python
-      - name: Lint with pylint
-        run: |
-          pylint selenium_axe_python
+#      - name: Lint with pylint
+#        run: |
+#          pylint selenium_axe_python
