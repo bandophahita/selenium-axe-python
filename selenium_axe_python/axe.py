@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import json
 import os
-from typing import TYPE_CHECKING, Dict
+from typing import TYPE_CHECKING, Dict, List
 
 if TYPE_CHECKING:
     from selenium.webdriver.remote.webdriver import WebDriver  # pragma: no cover
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 _DEFAULT_SCRIPT = os.path.join(os.path.dirname(__file__), "axe-core", "axe.min.js")
 
-T_data: TypeAlias = Dict[str, list[Dict]]
+T_data: TypeAlias = Dict[str, List[Dict]]
 
 
 class Axe:
@@ -34,7 +34,7 @@ class Axe:
         with open(self.script_url, encoding="utf8") as f:
             self.selenium.execute_script(f.read())
 
-    def run(self, context: object | None = None, options: dict | None = None) -> T_data:
+    def run(self, context: object | None = None, options: Dict | None = None) -> T_data:
         """
         Run axe against the current page.
 
@@ -61,7 +61,7 @@ class Axe:
         return response
 
     @staticmethod
-    def report(violations: list[dict]) -> str:
+    def report(violations: List[Dict]) -> str:
         """
         Return readable report of accessibility violations found.
 
@@ -96,7 +96,7 @@ class Axe:
         return string
 
     @staticmethod
-    def write_results(data: dict, name: str | None = None) -> None:
+    def write_results(data: Dict, name: str | None = None) -> None:
         """
         Write JSON to file with the specified name.
 
