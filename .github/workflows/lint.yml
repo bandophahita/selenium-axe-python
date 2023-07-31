@@ -30,13 +30,13 @@ jobs:
           pip install -e .[dev]
       - name: Lint with black
         run: |
-          black --check --diff screenpy
+          black --check --diff selenium_axe_python
       - name: Lint with isort
         run: |
-          isort --check-only --diff screenpy
+          isort --check-only --diff selenium_axe_python
       - name: Lint with flake8
         run: |
-          flake8 --exit-zero screenpy
+          flake8 --exit-zero selenium_axe_python
       - name: Lint with mypy
         run: |
           mypy screenpy
