@@ -1,5 +1,5 @@
 selenium-axe-python
-====================
+===================
 
 selenium-axe-python integrates aXe and selenium to enable automated web accessibility testing.
 
@@ -35,7 +35,7 @@ $ pip install git+https://github.com/bandophahita/selenium-axe-python
 ```
 
 Usage
-------
+-----
 
 ```python
 
@@ -83,22 +83,22 @@ Resources
 - [pytest-axe](http://github.com/mozilla-services/pytest-axe/)
 
 CHANGELOG
-^^^^^^^^^^^^^^
+---------
 
-version 2.1.5
-*************
+### version 2.1.5
+
 **Breaks backwards compatibility**:
 
 - The Axe class method `execute` has been renamed to `run` to mirror the method in the axe-core API.
 
-version 2.1.0
-**************
+### version 2.1.0
+
 - Created package.json file to maintain axe-core dependency
 - Replaced unit tests with more meaningful integration tests
   - included a sample html file for integration tests
 
-version 2.0.0
-**************
+### version 2.0.0
+
 - All functionalities that are not part of axe-core have been moved into a separate package, `pytest-axe`. This includes:
 
   - `run_axe` helper method
@@ -113,37 +113,37 @@ Java package, axe-selenium-java, and will now more closely mirror it.
 
 All functionalities can still be utilized when using `selenium-axe-python` in conjunction with `pytest-axe`.
 
-version 1.2.3
-**************
+### version 1.2.3
+
 - Added the analyze method to the Axe class. This method runs accessibility checks, and writes the JSON results to file based on the page URL and the timestamp.
 - Writing results to file can be enabled by setting the environment variable `ACCESSIBILITY_REPORTING=true`. The files will be written to `results/` directory, which must be created if it does not already exist.
 - Accessibility checks can be disabled by setting the environment variable `ACCESSIBILITY_DISABLED=true`.
 
-version 1.2.1
-**************
+### version 1.2.1
+
 - Updated axe to `axe-core@2.6.1`
 - Modified impact_included class method to reflect changes to the aXe API:
 - There are now only 3 impact levels: 'critical', 'serious', and 'minor'
 
-version 1.0.0
-**************
+### version 1.0.0
+
 - Updated usage examples in README
 - Added docstrings to methods lacking documentation
 - Removed unused files
 
-version 0.0.3
-**************
+### version 0.0.3
+
 - Added run method to Axe class to simplify the usage in existing test suites
 - run method includes the ability to set what impact level to test for: 'minor', 'moderate', 'severe', 'critical'
 
-version 0.0.28
-****************
+### version 0.0.28
+
 - Added selenium instance as a class attribute
 - Changed file paths to OS independent structure
 - Fixed file read operations to use with keyword
 
 
-version 0.0.21
-***************
+### version 0.0.21
+
 - Fixed include of aXe API file and references to it
 - Updated README
