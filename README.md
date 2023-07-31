@@ -1,9 +1,9 @@
-axe-selenium-python
+selenium-axe-python
 ====================
 
-axe-selenium-python integrates aXe and selenium to enable automated web accessibility testing.
+selenium-axe-python integrates aXe and selenium to enable automated web accessibility testing.
 
-**This version of axe-selenium-python is using axe-core@4.7.2.**
+**This version of selenium-axe-python is using axe-core@4.7.2.**
 
 .. image:: https://img.shields.io/badge/license-MPL%202.0-blue.svg
    :target: https://github.com/mozilla-services/axe-selenium-python/blob/master/LICENSE.txt
@@ -29,7 +29,7 @@ axe-selenium-python integrates aXe and selenium to enable automated web accessib
 Requirements
 ------------
 
-You will need the following prerequisites in order to use axe-selenium-python:
+You will need the following prerequisites in order to use selenium-axe-python:
 
 - selenium >= 3.0.2
 - Python 3.11
@@ -40,11 +40,12 @@ You will need the following prerequisites in order to use axe-selenium-python:
 Installation
 ------------
 
-To install axe-selenium-python:
+To install selenium-axe-python:
 
 .. code-block:: bash
 
-  $ pip install axe-selenium-python
+    $ pip install git+https://github.com/bandophahita/selenium-axe-python
+                  git+ssh://git@github.com/bandophahita/selenium-axe-python.git@master
 
 
 Usage
@@ -79,7 +80,7 @@ Contributing
 Fork the repository and submit PRs with bug fixes and enhancements;
 contributions are very welcome.
 
-Node dependencies must be installed by running `npm install` inside the axe-selenium-python directory.
+~~Node dependencies must be installed by running `npm install` inside the selenium-axe-python directory~~
 
 You can run the tests using
 `tox <https://tox.readthedocs.io/en/latest/>`_:
@@ -120,9 +121,11 @@ version 2.0.0
   - ``impact_included`` Axe class method
   - ``analyze`` Axe class method.
 
-The purpose of this change is to separate implementations that are specific to the Mozilla Firefox Test Engineering team, and leave the base ``axe-selenium-python`` package for a more broad use case. This package was modeled off of Deque's Java package, axe-selenium-java, and will now more closely mirror it.
+The purpose of this change is to separate implementations that are specific to the Mozilla Firefox Test Engineering team,
+and leave the base ``selenium-axe-python`` package for a more broad use case. This package was modeled off of Deque's
+Java package, axe-selenium-java, and will now more closely mirror it.
 
-All functionalities can still be utilized when using ``axe-selenium-python`` in conjunction with ``pytest-axe``.
+All functionalities can still be utilized when using ``selenium-axe-python`` in conjunction with ``pytest-axe``.
 
 version 1.2.3
 **************
