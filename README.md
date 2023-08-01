@@ -12,9 +12,7 @@ This is basically a fork of that project with some updates.
 [![License](https://img.shields.io/badge/license-MPL%202.0-blue.svg)](https://github.com/mozilla-services/axe-selenium-python/blob/master/LICENSE.txt)
 [![PyPI](https://img.shields.io/pypi/v/axe-selenium-python.svg)](https://pypi.org/project/axe-selenium-python/)
 [![Travis](https://img.shields.io/travis/mozilla-services/axe-selenium-python.svg)](https://travis-ci.org/mozilla-services/axe-selenium-python)
-[![Issues](https://img.shields.io/github/issues-raw/mozilla-services/axe-selenium-python.svg)](https://github.com/mozilla-services/axe-selenium-python/issues)
-[![Dependabot](https://api.dependabot.com/badges/status?host=github&repo=mozilla-services/axe-selenium-python)](https://dependabot.com)
-[![Coveralls](https://coveralls.io/repos/github/mozilla-services/axe-selenium-python/badge.svg?branch=master)](https://coveralls.io/github/mozilla-services/axe-selenium-python?branch=master)
+[![Issues](https://img.shields.io/github/issues-raw/bandophahita/selenium-axe-python.svg)](https://github.com/bandophahita/selenium-axe-python/issues)
 
 
 Requirements
@@ -74,6 +72,10 @@ contributions are very welcome.
 
 ~~Node dependencies must be installed by running `npm install` inside the selenium-axe-python directory~~
 
+The original project required you to run `npm install` (or in most cases did it at install for you) but this
+limited the use of the package to systems that have npm.  This fork includes the latest version of
+axe-core.
+
 You can run the tests using [tox](https://tox.readthedocs.io/en/latest/):
 
 ```bash
@@ -83,8 +85,8 @@ $ tox
 Resources
 ---------
 
-- [Issue Tracker](http://github.com/mozilla-services/axe-selenium-python/issues>)
-- [Code](http://github.com/mozilla-services/axe-selenium-python/)
+- [Issue Tracker](https://github.com/bandophahita/selenium-axe-python/issues)
+- [Code](https://github.com/bandophahita/selenium-axe-python/)
 - [pytest-axe](http://github.com/mozilla-services/pytest-axe/)
 
 CHANGELOG
