@@ -3,17 +3,24 @@ selenium-axe-python
 
 selenium-axe-python integrates aXe and selenium to enable automated web accessibility testing.
 
-Originally created as [axe-selenium-python](http://github.com/mozilla-services/axe-selenium-python/) by [Kimberly Sereduck](https://github.com/kimberlythegeek)
+Originally created as [axe-selenium-python](http://github.com/mozilla-services/axe-selenium-python/) by [Kimberly Sereduck](https://github.com/kimberlythegeek).
 Unfortunately she is no longer assigned to the project which means the original project has gone stale.
-This is basically a fork of that project with some updates.
+This is a fork of that project with some updates.
 
 **This version of selenium-axe-python is using axe-core@4.7.2.**
 
-[![License](https://img.shields.io/badge/license-MPL%202.0-blue.svg)](https://github.com/mozilla-services/axe-selenium-python/blob/master/LICENSE.txt)
-[![PyPI](https://img.shields.io/pypi/v/axe-selenium-python.svg)](https://pypi.org/project/axe-selenium-python/)
-[![Travis](https://img.shields.io/travis/mozilla-services/axe-selenium-python.svg)](https://travis-ci.org/mozilla-services/axe-selenium-python)
+[![License](https://img.shields.io/badge/license-MPL%202.0-blue.svg)](https://github.com/bandophahita/selenium-axe-python/blob/master/LICENSE.txt)
+[![PyPI](https://img.shields.io/pypi/v/selenium-axe-python.svg)](https://pypi.org/project/selenium-axe-python/)
+[![Supported Versions](https://img.shields.io/pypi/pyversions/screenpy.svg)](https://pypi.org/project/screenpy)
+[![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+
 [![Issues](https://img.shields.io/github/issues-raw/bandophahita/selenium-axe-python.svg)](https://github.com/bandophahita/selenium-axe-python/issues)
 
+[![Build Status](https://github.com/bandophahita/selenium-axe-python/actions/workflows/tests.yml/badge.svg)](https://github.com/bandophahita/selenium-axe-python/actions/workflows/tests.yml)
+[![Build Status](https://github.com/bandophahita/selenium-axe-python/actions/workflows/lint.yml/badge.svg)](https://github.com/bandophahita/selenium-axe-python/actions/workflows/lint.yml)
 
 Requirements
 ------------
@@ -32,8 +39,7 @@ Installation
 To install selenium-axe-python:
 
 ```bash
-$ pip install git+https://github.com/bandophahita/selenium-axe-python
-              git+ssh://git@github.com/bandophahita/selenium-axe-python.git@master
+$ pip install selenium-axe-python
 ```
 
 Usage
@@ -70,7 +76,6 @@ Contributing
 Fork the repository and submit PRs with bug fixes and enhancements;
 contributions are very welcome.
 
-~~Node dependencies must be installed by running `npm install` inside the selenium-axe-python directory~~
 
 The original project required you to run `npm install` (or in most cases did it at install for you) but this
 limited the use of the package to systems that have npm.  This fork includes the latest version of
