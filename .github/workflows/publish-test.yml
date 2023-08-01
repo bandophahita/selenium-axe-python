@@ -1,7 +1,7 @@
 # adapted from https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
 # with changes from https://blog.pypi.org/posts/2023-04-20-introducing-trusted-publishers/
 
-name: Publish to PyPI
+name: Publish to TEST PyPI
 
 on: push
 
