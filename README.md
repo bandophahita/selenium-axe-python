@@ -112,7 +112,7 @@ Resources
 CHANGELOG
 ---------
 
-## version 2.1.12
+### version 2.1.12
 
 - forked from original repo [axe-selenium-python](http://github.com/mozilla-services/axe-selenium-python/)
 - updated to work with python >=3.7
