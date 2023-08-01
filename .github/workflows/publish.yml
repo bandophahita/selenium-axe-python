@@ -23,7 +23,7 @@ jobs:
           pip install
           poetry
           --user
-      - name: Build ScreenPy
+      - name: Build Selenium-Axe-Python
         run: >-
           python -m
           poetry
