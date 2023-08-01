@@ -9,10 +9,9 @@
 
 [tool.poetry]
 name = "selenium-axe-python"
-version = "2.1.12"
+version = "2.1.13"
 description = "Python library to integrate axe and selenium for web accessibility testing."
-authors = ["Kimberly Sereduck"]
-maintainers = ["Marcel Wilson"]
+authors = ["Marcel Wilson"]
 license = "Mozilla Public License 2.0 (MPL 2.0)"
 repository = "https://github.com/bandophahita/selenium-axe-python"
 #documentation = ""
