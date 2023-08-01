@@ -116,6 +116,7 @@ CHANGELOG
 
 - forked from original repo [axe-selenium-python](http://github.com/mozilla-services/axe-selenium-python/)
 - updated to work with python >=3.7
+- Updated axe to `axe-core@4.7.2`
 
 
 ### version 2.1.5
