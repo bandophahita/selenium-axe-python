@@ -73,8 +73,16 @@ For more information on `context` and `options`, view the [aXe documentation her
 Contributing
 ------------
 
-Fork the repository and submit PRs with bug fixes and enhancements;
-contributions are very welcome.
+You want to contribute? Great! Here are the things you should do before submitting your PR:
+
+
+1. Fork the repo and git clone your fork.
+1. `dev` install the project package:
+    1. `pip install -e .[dev]`
+    1. Optional (poetry users):
+        1. `poetry install --extras dev`
+1. Run `tox` to perform tests frequently.
+1. Create pull-request from your branch.
 
 
 The original project required you to run `npm install` (or in most cases did it at install for you) but this
@@ -87,6 +95,12 @@ You can run the tests using [tox](https://tox.readthedocs.io/en/latest/):
 $ tox
 ```
 
+Alternatively you can use the makefile in the root of the repo:
+
+```bash
+$ make pre-check-in
+```
+
 Resources
 ---------
 
@@ -97,7 +111,7 @@ Resources
 CHANGELOG
 ---------
 
-## version 2.1.7
+## version 2.1.12
 
 - forked from original repo [axe-selenium-python](http://github.com/mozilla-services/axe-selenium-python/)
 - updated to work with python >=3.7

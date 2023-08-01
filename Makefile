@@ -30,8 +30,9 @@ mypy:
 
 lint: ruff mypy
 
-pre-check-in:
-	make black-check
-	make lint
+test:
+	python3 -m pytest ./selenium_axe_python/tests/
 
-.PHONY: black-check black ruff mypy lint pre-check-in
+pre-check-in: black-check lint test
+
+.PHONY: black-check black ruff mypy lint test pre-check-in
