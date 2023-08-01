@@ -2,10 +2,10 @@
 sync:
 	poetry install --extras dev --sync
 
-update_lock_only:
+update-lock-only:
 	poetry update --lock
 
-update: update_lock_only
+update: update-lock-only
 	poetry install --extras dev
 
 check:
@@ -14,7 +14,7 @@ check:
 requirements:
 	poetry export --without-hashes --extras dev -f requirements.txt > requirements.txt
 
-.PHONY: sync update_lock_only update check requirements
+.PHONY: sync update-lock-only update check requirements
 
 black-check:
 	black --check .
@@ -36,3 +36,8 @@ test:
 pre-check-in: black-check lint test
 
 .PHONY: black-check black ruff mypy lint test pre-check-in
+
+axe-core-update:
+	python3 update_axe_core.py
+
+.PHONY: axe-core-update
