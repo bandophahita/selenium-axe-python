@@ -149,8 +149,8 @@ def test_run(chrome_driver: WebDriver) -> None:
                 "values": [
                     "html-has-lang",
                 ],
-            }
-        }
+            },
+        },
     )
     data2 = axe.run(context="['select']")
     data3 = axe.run(
@@ -162,7 +162,7 @@ def test_run(chrome_driver: WebDriver) -> None:
                     "html-has-lang",
                     "document-title",
                 ],
-            }
+            },
         },
     )
 
@@ -241,7 +241,7 @@ def test_report() -> None:
                             "impact": "serious",
                             "message": "Document does not have a non-empty <title> element",
                             "relatedNodes": [],
-                        }
+                        },
                     ],
                     "failureSummary": (
                         "Fix any of the following:\n  "
@@ -251,7 +251,7 @@ def test_report() -> None:
                     "impact": "serious",
                     "none": [],
                     "target": ["html"],
-                }
+                },
             ],
             "tags": [
                 "cat.text-alternatives",
@@ -279,14 +279,14 @@ def test_report() -> None:
                             "impact": "serious",
                             "message": "The <html> element does not have a lang attribute",
                             "relatedNodes": [],
-                        }
+                        },
                     ],
                     "failureSummary": "Fix any of the following:\n  The <html> element does not have a lang attribute",
                     "html": "<html>",
                     "impact": "serious",
                     "none": [],
                     "target": ["html"],
-                }
+                },
             ],
             "tags": ["cat.language", "wcag2a", "wcag311", "ACT", "TTv5", "TT11.a"],
         },
@@ -306,7 +306,7 @@ def test_report() -> None:
                             "impact": "moderate",
                             "message": "Document does not have a main landmark",
                             "relatedNodes": [],
-                        }
+                        },
                     ],
                     "any": [],
                     "failureSummary": "Fix all of the following:\n  Document does not have a main landmark",
@@ -314,7 +314,7 @@ def test_report() -> None:
                     "impact": "moderate",
                     "none": [],
                     "target": ["html"],
-                }
+                },
             ],
             "tags": ["cat.semantics", "best-practice"],
         },
@@ -353,12 +353,12 @@ def test_report() -> None:
                                 {
                                     "html": "<div>\n        <li>This is a line element</li>\n      </div>",
                                     "target": ["div"],
-                                }
+                                },
                             ],
-                        }
+                        },
                     ],
                     "target": ["ul"],
-                }
+                },
             ],
             "tags": ["cat.structure", "wcag2a", "wcag131"],
         },
