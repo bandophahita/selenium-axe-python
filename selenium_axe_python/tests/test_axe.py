@@ -370,12 +370,12 @@ def test_report() -> None:
 
 Rule Violated:
 document-title - Ensures each HTML document contains a non-empty <title> element
-	URL: https://dequeuniversity.com/rules/axe/4.7/document-title?application=axeAPI
-	Impact Level: serious
-	Tags: cat.text-alternatives wcag2a wcag242 ACT TTv5 TT12.a
-	Elements Affected:
-	1) Target: html
-		Document does not have a non-empty <title> element
+    URL: https://dequeuniversity.com/rules/axe/4.7/document-title?application=axeAPI
+    Impact Level: serious
+    Tags: cat.text-alternatives wcag2a wcag242 ACT TTv5 TT12.a
+    Elements Affected:
+    1) Target: html
+        Document does not have a non-empty <title> element
 
 
 
@@ -383,12 +383,12 @@ document-title - Ensures each HTML document contains a non-empty <title> element
 
 Rule Violated:
 html-has-lang - Ensures every HTML document has a lang attribute
-	URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang?application=axeAPI
-	Impact Level: serious
-	Tags: cat.language wcag2a wcag311 ACT TTv5 TT11.a
-	Elements Affected:
-	1) Target: html
-		The <html> element does not have a lang attribute
+    URL: https://dequeuniversity.com/rules/axe/4.7/html-has-lang?application=axeAPI
+    Impact Level: serious
+    Tags: cat.language wcag2a wcag311 ACT TTv5 TT11.a
+    Elements Affected:
+    1) Target: html
+        The <html> element does not have a lang attribute
 
 
 
@@ -396,12 +396,12 @@ html-has-lang - Ensures every HTML document has a lang attribute
 
 Rule Violated:
 landmark-one-main - Ensures the document has a main landmark
-	URL: https://dequeuniversity.com/rules/axe/4.7/landmark-one-main?application=axeAPI
-	Impact Level: moderate
-	Tags: cat.semantics best-practice
-	Elements Affected:
-	1) Target: html
-		Document does not have a main landmark
+    URL: https://dequeuniversity.com/rules/axe/4.7/landmark-one-main?application=axeAPI
+    Impact Level: moderate
+    Tags: cat.semantics best-practice
+    Elements Affected:
+    1) Target: html
+        Document does not have a main landmark
 
 
 
@@ -409,12 +409,12 @@ landmark-one-main - Ensures the document has a main landmark
 
 Rule Violated:
 list - Ensures that lists are structured correctly
-	URL: https://dequeuniversity.com/rules/axe/4.7/list?application=axeAPI
-	Impact Level: serious
-	Tags: cat.structure wcag2a wcag131
-	Elements Affected:
-	1) Target: ul
-		List element has direct children that are not allowed: div
+    URL: https://dequeuniversity.com/rules/axe/4.7/list?application=axeAPI
+    Impact Level: serious
+    Tags: cat.structure wcag2a wcag131
+    Elements Affected:
+    1) Target: ul
+        List element has direct children that are not allowed: div
 
 
 """
