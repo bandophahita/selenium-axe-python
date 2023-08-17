@@ -187,8 +187,7 @@ def _perform_axe_run(driver: WebDriver) -> dict:
     driver.get("file://" + _DEFAULT_TEST_FILE)
     axe = Axe(driver)
     axe.inject()
-    data = axe.run()
-    return data
+    return axe.run()
 
 
 def test_write_results_to_file(tmpdir: LocalPath, mocker: MockerFixture) -> None:

@@ -57,8 +57,7 @@ class Axe:
             f"var callback = arguments[arguments.length - 1];"
             f"axe.run({args}).then(results => callback(results))"
         )
-        response = self.selenium.execute_async_script(command)
-        return response
+        return self.selenium.execute_async_script(command)
 
     @staticmethod
     def report(violations: List[Dict]) -> str:
