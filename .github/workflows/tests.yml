@@ -12,6 +12,8 @@ jobs:
   run-tests:
     name: Python ${{ matrix.python-version }} ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     strategy:
       max-parallel: 9
       fail-fast: false
