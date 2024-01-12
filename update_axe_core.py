@@ -22,7 +22,7 @@ ver_line = "**This version of selenium-axe-python is using axe-core@"
 new_line = f"**This version of selenium-axe-python is using axe-core@{ver}**\n"
 
 
-readmelines=open("README.md").readlines()
+readmelines = open("README.md").readlines()
 with open("README.md", "w") as fp:
     for line in readmelines:
         if ver_line in line and new_line != line:
