@@ -9,7 +9,7 @@
 
 [tool.poetry]
 name = "selenium-axe-python"
-version = "2.1.13"
+version = "2.1.14"
 description = "Python library to integrate axe and selenium for web accessibility testing."
 authors = ["Marcel Wilson"]
 license = "Mozilla Public License 2.0 (MPL 2.0)"
@@ -37,8 +37,8 @@ classifiers = [
 # so we dont have two different sets of package versions to update.
 
 [tool.poetry.dependencies]
-python = "^3.7"
-selenium = ">=3.0.2"
+python = "^3.8"
+selenium = ">=4.7.0"
 typing-extensions = "^4.7.1"
 
 # convenience packages for development of selenium-axe-python only
@@ -55,6 +55,7 @@ pytest-mock = {version = "*", optional = true}
 pytest-html = {version = "^3.2.0", optional = true}
 py = {version = "^1.11.0", optional = true}
 ruff = {version = "*", optional = true}
+setup_selenium = {git = "git@github.com:bandophahita/setup_selenium.git", branch = "main", optional = true}
 
 [tool.poetry.extras]
 dev = [
@@ -72,12 +73,14 @@ dev = [
     "sphinx",
     "autodoc-pydantic",
     "py",
-    "ruff"
+    "ruff",
+    "setup_selenium",
 ]
 test = [
     "pytest",
     "pytest-mock",
     "coverage",
+    "setup_selenium",
 ]
 
 [build-system]
@@ -123,11 +126,11 @@ ignore = [
     "ANN101",  # missing-type-self
     "ANN102",  # cls 
     #    "ANN401",  # any-type
-    "UP035",  # 3.8 still needs the older type annotations for dictionary
-    "UP006",
+    # 3.8 & 3.9 support
+    "UP006",  # Use `dict` instead of `Dict` for type annotation
+    "UP007",  # Use `X | Y` for type annotations
+    "UP035",  # 3.8 still needs Dict for typealias
 ]
-# Avoid trying to fix flake8-bugbear (`B`) violations.
-#unfixable = ["B"]
 
 # Same as Black.
 line-length = 88

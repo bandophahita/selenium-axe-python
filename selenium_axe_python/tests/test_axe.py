@@ -5,12 +5,11 @@ from __future__ import annotations
 # You can obtain one at http://mozilla.org/MPL/2.0/.
 import json
 import os
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Union
 
 import pytest
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.firefox.service import Service as FirefoxService
+from setup_selenium import Browser, SetupSelenium
+from typing_extensions import TypeAlias
 
 from ..axe import Axe
 
@@ -19,7 +18,10 @@ if TYPE_CHECKING:
 
     from py._path.local import LocalPath
     from pytest_mock import MockerFixture
+    from selenium.webdriver import Chrome, Edge, Firefox, Ie, Safari
     from selenium.webdriver.remote.webdriver import WebDriver
+
+    AnyDriver: TypeAlias = Union[Chrome, Firefox, Safari, Ie, Edge]
 
 _DEFAULT_TEST_FILE = os.path.join(os.path.dirname(__file__), "test_page.html")
 
@@ -30,28 +32,13 @@ def firefox_driver() -> Generator[WebDriver, Any, None]:
     log_dir: str = "./logs"
     driver_path: str | None = None
 
-    options = webdriver.FirefoxOptions()
-    options.set_capability("unhandledPromptBehavior", "ignore")
-
-    # profile settings
-    options.set_preference("app.update.auto", False)
-    options.set_preference("app.update.enabled", False)
-    options.set_preference("network.prefetch-next", False)
-    options.set_preference("network.dns.disablePrefetch", True)
-    options.add_argument("--headless")
-
-    logpath = "/dev/null"
-    options.log.level = "fatal"  # type: ignore[assignment]
-    if enable_log_driver:
-        lp = os.path.abspath(os.path.expanduser(log_dir))
-        logpath = os.path.join(lp, "geckodriver.log")
-
-    if driver_path:
-        service = FirefoxService(executable_path=driver_path, log_path=logpath)
-    else:
-        service = FirefoxService(log_path=logpath)
-
-    driver = webdriver.Firefox(service=service, options=options)
+    driver: AnyDriver = SetupSelenium.create_driver(
+        browser=Browser.FIREFOX,
+        headless=True,
+        enable_log_driver=enable_log_driver,
+        log_dir=log_dir,
+        driver_path=driver_path,
+    )
     yield driver
     driver.close()
 
@@ -60,56 +47,15 @@ def firefox_driver() -> Generator[WebDriver, Any, None]:
 def chrome_driver() -> Generator[WebDriver, Any, None]:
     enable_log_driver = False
     log_dir: str = "./logs"
-
-    opts = (
-        "--disable-extensions",
-        "--allow-running-insecure-content",
-        "--ignore-certificate-errors",
-        "--disable-single-click-autofill",
-        "--disable-autofill-keyboard-accessory-view[8]",
-        "--disable-full-form-autofill-ios",
-        # https://bugs.chromium.org/p/chromedriver/issues/detail?id=402#c128
-        # "--dns-prefetch-disable",
-        "--disable-infobars",
-        # chromedriver crashes without these two in linux
-        "--no-sandbox",
-        "--disable-dev-shm-usage",
-    )
-
-    options = webdriver.ChromeOptions()
-    for opt in opts:
-        options.add_argument(opt)
-
-    options.headless = True
     driver_path = os.getenv("CHROMEDRIVER_PATH")
 
-    logging_prefs = {"browser": "OFF", "performance": "OFF", "driver": "OFF"}
-
-    args: list | None = None
-    logpath = None
-    if enable_log_driver:
-        lp = os.path.abspath(os.path.expanduser(log_dir))
-        logpath = os.path.join(lp, "chromedriver.log")
-        args = [
-            # "--verbose"
-        ]
-        logging_prefs["driver"] = "ALL"
-
-    options.set_capability("goog:loggingPrefs", logging_prefs)
-
-    if driver_path:
-        service = ChromeService(
-            executable_path=driver_path,
-            service_args=args,
-            log_path=logpath,
-        )
-    else:
-        service = ChromeService(
-            service_args=args,
-            log_path=logpath,
-        )
-
-    driver = webdriver.Chrome(service=service, options=options)
+    driver: AnyDriver = SetupSelenium.create_driver(
+        browser=Browser.CHROME,
+        headless=True,
+        enable_log_driver=enable_log_driver,
+        log_dir=log_dir,
+        driver_path=driver_path,
+    )
     yield driver
     driver.close()
 
