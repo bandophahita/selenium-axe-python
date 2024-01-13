@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 _DEFAULT_TEST_FILE = os.path.join(os.path.dirname(__file__), "test_page.html")
 
 
-@pytest.fixture
+@pytest.fixture()
 def firefox_driver() -> Generator[WebDriver, Any, None]:
     enable_log_driver = False
     log_dir: str = "./logs"
@@ -43,7 +43,7 @@ def firefox_driver() -> Generator[WebDriver, Any, None]:
     driver.close()
 
 
-@pytest.fixture
+@pytest.fixture()
 def chrome_driver() -> Generator[WebDriver, Any, None]:
     enable_log_driver = False
     log_dir: str = "./logs"
@@ -126,15 +126,13 @@ def test_run(chrome_driver: WebDriver) -> None:
     assert len(data3["incomplete"]) == 0
     assert len(data3["passes"]) == 0
     assert len(data3["violations"]) == 2
-    return
 
 
 def _perform_axe_run(driver: WebDriver) -> dict:
     driver.get("file://" + _DEFAULT_TEST_FILE)
     axe = Axe(driver)
     axe.inject()
-    data = axe.run()
-    return data
+    return axe.run()
 
 
 def test_write_results_to_file(tmpdir: LocalPath, mocker: MockerFixture) -> None:
@@ -366,4 +364,3 @@ list - Ensures that lists are structured correctly
 """
 
     assert output == expected
-    return
