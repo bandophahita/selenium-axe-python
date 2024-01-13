@@ -61,9 +61,9 @@ def chrome_driver() -> Generator[WebDriver, Any, None]:
 
 
 def confirm_data(data: dict) -> None:
-    assert len(data["inapplicable"]) == 71
+    assert len(data["inapplicable"]) == 74
     assert len(data["incomplete"]) == 0
-    assert len(data["passes"]) == 7
+    assert len(data["passes"]) == 6
     assert len(data["violations"]) == 9
 
 
@@ -117,9 +117,9 @@ def test_run(chrome_driver: WebDriver) -> None:
     assert len(data1["passes"]) == 0
     assert len(data1["violations"]) == 1
 
-    assert len(data2["inapplicable"]) == 79
+    assert len(data2["inapplicable"]) == 82
     assert len(data2["incomplete"]) == 0
-    assert len(data2["passes"]) == 5
+    assert len(data2["passes"]) == 4
     assert len(data2["violations"]) == 1
 
     assert len(data3["inapplicable"]) == 0
