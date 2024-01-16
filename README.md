@@ -111,6 +111,11 @@ Resources
 
 CHANGELOG
 ---------
+
+### version 2.1.16
+
+- removed old dependencies
+
 ### version 2.1.15
 
 - updated to work with python >=3.8
