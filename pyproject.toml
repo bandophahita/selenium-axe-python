@@ -9,7 +9,7 @@
 
 [tool.poetry]
 name = "selenium-axe-python"
-version = "2.1.14"
+version = "2.1.15"
 description = "Python library to integrate axe and selenium for web accessibility testing."
 authors = ["Marcel Wilson"]
 license = "Mozilla Public License 2.0 (MPL 2.0)"
