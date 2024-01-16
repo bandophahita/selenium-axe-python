@@ -3,7 +3,10 @@
 
 name: Publish to TEST PyPI
 
-on: push
+on:
+  push:
+    tags:
+      - '**'
 
 jobs:
   build-and-pypi-publish:
