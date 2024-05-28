@@ -7,7 +7,7 @@ Originally created as [axe-selenium-python](http://github.com/mozilla-services/a
 Unfortunately she is no longer assigned to the project which means the original project has gone stale.
 This is a fork of that project with some updates.
 
-**This version of selenium-axe-python is using axe-core@4.8.3**
+**This version of selenium-axe-python is using axe-core@4.9.1**
 
 
 [![License](https://img.shields.io/badge/license-MPL%202.0-blue.svg)](https://github.com/bandophahita/selenium-axe-python/blob/master/LICENSE.txt)
@@ -111,6 +111,13 @@ Resources
 
 CHANGELOG
 ---------
+### version 2.1.18
+
+- Updated axe to `axe-core@4.9.1` 
+
+### version 2.1.17
+
+- adding mypy support (py.typed)
 
 ### version 2.1.16
 
