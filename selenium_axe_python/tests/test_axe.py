@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 _DEFAULT_TEST_FILE = os.path.join(os.path.dirname(__file__), "test_page.html")
 
 
-@pytest.fixture()
+@pytest.fixture
 def firefox_driver() -> Generator[WebDriver, Any, None]:
     enable_log_driver = False
     log_dir: str = "./logs"
@@ -43,7 +43,7 @@ def firefox_driver() -> Generator[WebDriver, Any, None]:
     driver.close()
 
 
-@pytest.fixture()
+@pytest.fixture
 def chrome_driver() -> Generator[WebDriver, Any, None]:
     enable_log_driver = False
     log_dir: str = "./logs"

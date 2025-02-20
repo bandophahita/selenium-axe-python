@@ -19,23 +19,28 @@ requirements:
 black-check:
 	black --check .
 
-black:
+black-fix:
 	black .
 
-ruff:
-	ruff .
+ruff-check:
+	ruff check .
+
+ruff-fix:
+	ruff check . --fix --show-fixes
 
 mypy:
 	mypy .
 
-lint: ruff mypy
+lint: ruff-check mypy
 
 test:
 	python3 -m pytest ./selenium_axe_python/tests/
 
-pre-check-in: black-check lint test
+pre-check-in: black-check ruff-check mypy
 
-.PHONY: black-check black ruff mypy lint test pre-check-in
+pre-check-in-fix: black-fix ruff-fix mypy
+
+.PHONY: black-check black ruff mypy lint test pre-check-in pre-check-in-fix
 
 axe-core-update:
 	python3 update_axe_core.py

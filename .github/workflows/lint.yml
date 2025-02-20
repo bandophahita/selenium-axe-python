@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
         os: [ubuntu-latest]
 
     steps:
@@ -41,7 +41,7 @@ jobs:
           black --check --diff selenium_axe_python
       - name: Lint with ruff
         run: |
-          ruff selenium_axe_python
+          ruff check selenium_axe_python
       - name: Lint with mypy
         run: |
           mypy selenium_axe_python
