@@ -29,7 +29,7 @@ Requirements
 You will need the following prerequisites in order to use selenium-axe-python:
 
 - selenium >= 4.7.0
-- Python 3.8
+- Python 3.9
 - The appropriate driver for the browser you intend to use, downloaded and added to your path, e.g. geckodriver for Firefox:
 
   - [geckodriver](https://github.com/mozilla/geckodriver/releases) downloaded and [added to your PATH](https://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path#answer-40208762)
@@ -111,6 +111,10 @@ Resources
 
 CHANGELOG
 ---------
+### version 2.2
+
+- Drop support for python 3.8
+
 ### version 2.1.18
 
 - Updated axe to `axe-core@4.9.1` 
