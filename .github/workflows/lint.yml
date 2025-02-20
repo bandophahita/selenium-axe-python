@@ -41,7 +41,7 @@ jobs:
           black --check --diff selenium_axe_python
       - name: Lint with ruff
         run: |
-          ruff selenium_axe_python
+          ruff check selenium_axe_python
       - name: Lint with mypy
         run: |
           mypy selenium_axe_python
