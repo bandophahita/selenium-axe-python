@@ -19,11 +19,11 @@ readme = "README.md"
 classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Intended Audience :: Developers",
     "Natural Language :: English",
 ]
@@ -37,7 +37,7 @@ classifiers = [
 # so we dont have two different sets of package versions to update.
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 selenium = ">=4.7.0"
 typing-extensions = ">=4.0"
 
@@ -116,6 +116,7 @@ extend-exclude = [
     "README.md",
     ".idea",
 ]
+output-format = "concise"
 
 [tool.ruff.lint]
 select = [
@@ -158,8 +159,6 @@ ignore = [
     #    "PT003",  # pytest fixture scope implied
     #    "PT004",  # pytest fixture setup doesn't return anything
     "RUF100",  # blanket noqa
-    "ANN101",  # missing-type-self
-    "ANN102",  # cls 
     #    "ANN401",  # any-type
     # 3.8 & 3.9 support
     "UP006",  # Use `dict` instead of `Dict` for type annotation
