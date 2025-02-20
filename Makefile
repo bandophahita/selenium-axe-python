@@ -46,3 +46,9 @@ axe-core-update:
 	python3 update_axe_core.py
 
 .PHONY: axe-core-update
+
+local_setup_selenium:
+	pip uninstall setup-selenium-testing -y
+	pip install -e ~/projects/setup_selenium
+
+.PHONY: local_setup_selenium
